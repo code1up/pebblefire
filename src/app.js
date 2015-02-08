@@ -15,7 +15,8 @@ var setColor = function (rgb) {
   var options = {
     url: "https://rfx.firebaseio.com/.json",
     type: "json",
-    method: "POST"
+    method: "POST",
+    data: rgb
   };
 
   ajax(options, success, failure);
