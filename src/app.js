@@ -15,7 +15,7 @@ var setColor = function (rgb) {
   var options = {
     url: "https://rfx.firebaseio.com/.json",
     type: "json",
-    method: "POST",
+    method: "PUT",
     data: rgb
   };
 
@@ -23,7 +23,7 @@ var setColor = function (rgb) {
 };
 
 var main = new UI.Card({
-  title: "PebbleFire",
+  title: " PebbleFire",
   icon: "images/menu_icon.png",
   subtitle: "RFX",
   body: "UP = red, SELECT = green, DOWN = red"
