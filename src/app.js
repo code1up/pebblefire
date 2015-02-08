@@ -13,12 +13,10 @@ var setColor = function (rgb) {
   };
 
   var options = {
-    url: "https://rfx.firebaseio.com/sphero/",
+    url: "https://rfx.firebaseio.com/sphero/wibble.json",
     type: "json",
     method: "PUT",
-    data: {
-      colors: rgb
-    }
+    data: rgb
   };
 
   ajax(options, success, failure);
@@ -35,24 +33,30 @@ main.show();
 
 main.on("click", "up", function (e) {
   setColor({
-    red: 255,
-    green: 0,
-    blue: 0
+    colors: {
+      red: 255,
+      green: 0,
+      blue: 0
+    }
   });
 });
 
 main.on("click", "select", function (e) {
   setColor({
-    red: 0,
-    green: 255,
-    blue: 0
+    colors: {
+      red: 0,
+      green: 255,
+      blue: 0
+    }
   });
 });
 
 main.on("click", "down", function (e) {
   setColor({
-    red: 0,
-    green: 0,
-    blue: 255
+    colors: {
+      red: 0,
+      green: 0,
+      blue: 255
+    }
   });
 });
