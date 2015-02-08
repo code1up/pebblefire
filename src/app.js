@@ -13,7 +13,7 @@ var setColor = function (rgb) {
   };
 
   var options = {
-    url: "https://rfx.firebaseio.com/.json",
+    url: "https://rfx.firebaseio.com/colors/colors.json",
     type: "json",
     method: "PUT",
     data: rgb
