@@ -13,7 +13,7 @@ var setColor = function (rgb) {
   };
 
   var options = {
-    url: "https://rfx.firebaseio.com/sphero/wibble.json",
+    url: "https://rfx.firebaseio.com/sphero/",
     type: "json",
     method: "PUT",
     data: rgb
