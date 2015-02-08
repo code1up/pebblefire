@@ -3,65 +3,53 @@ var Vector2 = require("vector2");
 
 var ajax = require("ajax");
 
+var setColor = function (rgb) {
+  var success = function (data) {
+    console.log("AJAX SUCCEEDED");
+  };
+
+  var failure = function (error) {
+    console.log("AJAX ERROR: " + error);
+  };
+
+  var options = {
+    url: "https://rfx.firebaseio.com/.json",
+    type: "json",
+    method: "POST"
+  };
+
+  ajax(options, success, failure);
+};
+
 var main = new UI.Card({
-  title: "Pebble.js",
+  title: "PebbleFire",
   icon: "images/menu_icon.png",
-  subtitle: "Yay!",
-  body: "Press any button."
+  subtitle: "RFX",
+  body: "UP = red, SELECT = green, DOWN = red"
 });
 
 main.show();
 
-main.on("click", "up", function(e) {
-  var menu = new UI.Menu({
-    sections: [{
-      items: [{
-        title: "Pebble.js",
-        icon: "images/menu_icon.png",
-        subtitle: "Can do Menus"
-      }, {
-        title: "Second Item",
-        subtitle: "Subtitle Text"
-      }]
-    }]
+main.on("click", "up", function (e) {
+  setColor({
+    red: 255,
+    green: 0,
+    blue: 0
   });
-  menu.on("select", function(e) {
-    console.log("Selected item #" + e.itemIndex + " of section #" + e.sectionIndex);
-    console.log("The item is titled '" + e.item.title + "'");
-  });
-  menu.show();
 });
 
-main.on("click", "select", function(e) {
-  var wind = new UI.Window();
-  var textfield = new UI.Text({
-    position: new Vector2(0, 50),
-    size: new Vector2(144, 30),
-    font: "gothic-24-bold",
-    text: "Text Anywhere!",
-    textAlign: "center"
+main.on("click", "select", function (e) {
+  setColor({
+    red: 0,
+    green: 255,
+    blue: 0
   });
-  wind.add(textfield);
-  wind.show();
 });
 
-main.on("click", "down", function(e) {
-
-  var card = new UI.Card();
-
-  ajax({
-      url: "https://rfx.firebaseio.com/.json",
-      type: "json"
-    },
-    function(data) {
-      card.body(data.blue);
-      card.subtitle("yay");
-      card.title("Done");
-    }
-  );
-
-  card.title("Waiting...");
-  card.subtitle("for data...");
-  card.body("...");
-  card.show();
+main.on("click", "down", function (e) {
+  setColor({
+    red: 0,
+    green: 0,
+    blue: 255
+  });
 });
