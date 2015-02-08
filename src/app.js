@@ -1,6 +1,8 @@
 var UI = require("ui");
 var Vector2 = require("vector2");
 
+var ajax = require("ajax");
+
 var main = new UI.Card({
   title: "Pebble.js",
   icon: "images/menu_icon.png",
@@ -44,9 +46,22 @@ main.on("click", "select", function(e) {
 });
 
 main.on("click", "down", function(e) {
+
   var card = new UI.Card();
-  card.title("A Card");
-  card.subtitle("Is a Window");
-  card.body("The simplest window type in Pebble.js.");
+
+  ajax({
+      url: "https://rfx.firebaseio.com/.json",
+      type: "json"
+    },
+    function(data) {
+      card.body(data.blue);
+      card.subtitle("yay");
+      card.title("Done");
+    }
+  );
+
+  card.title("Waiting...");
+  card.subtitle("for data...");
+  card.body("...");
   card.show();
 });
